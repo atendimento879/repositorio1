@@ -303,4 +303,5 @@ for key, path in arquivos.items():
 ## Referências
 
 - `references/componentes.md` — Código completo de todos os componentes reutilizáveis
-- `references/jasminny-tokens.md` — Tokens e padrões visuais do projeto de referência
+- `references/jasminny-tokens.md` — Tokens e padrões visuais do projeto de referência (nicho estética/luxo)
+- `references/kikuchi-tokens.md` — Tokens e padrões visuais do projeto Kikuchi Engenharia (nicho técnico/B2B), incluindo checklist de débito técnico a corrigir ao reaproveitar
