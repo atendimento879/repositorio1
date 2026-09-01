@@ -79,12 +79,6 @@
 .fkl-foot-soc a:hover{border-color:var(--bd-h);color:var(--ac)}
 .fkl-foot-soc svg{width:15px;height:15px}
 
-/* Floating WhatsApp */
-.fkl-float{position:fixed;bottom:26px;right:26px;z-index:999;width:60px;height:60px;border-radius:50%;background:var(--wa);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 30px rgba(37,211,102,.4);text-decoration:none;animation:fkl-pulse 2.4s ease-in-out infinite;opacity:0;pointer-events:none;transform:scale(.8);transition:opacity .3s,transform .3s}
-.fkl-float.fkl-show{opacity:1;pointer-events:auto;transform:scale(1)}
-.fkl-float svg{width:30px;height:30px;color:#fff}
-@keyframes fkl-pulse{0%,100%{box-shadow:0 12px 30px rgba(37,211,102,.4)}50%{box-shadow:0 12px 30px rgba(37,211,102,.4),0 0 0 10px rgba(37,211,102,.12)}}
-
 /* ========== RESPONSIVE ========== */
 @media(max-width:760px){
   .fkl-days{grid-template-columns:1fr}
@@ -98,15 +92,13 @@
   .fkl-cta{width:100%;justify-content:center;padding:18px 20px}
   .fkl-urg{padding:12px 18px;font-size:13.5px}
   .fkl-day{padding:1.5rem}
-  .fkl-float{width:52px;height:52px;bottom:18px;right:18px}
-  .fkl-float svg{width:26px;height:26px}
 }
 </style>
 
 <div class="fkl">
 
 <!-- ====== DOBRA 1 — HERO ====== -->
-<section class="fkl-hero" id="fklHero">
+<section class="fkl-hero">
   <div class="fkl-hero-gbg"></div>
   <div class="fkl-hero-glow"></div>
   <div class="fkl-ci">
@@ -121,7 +113,7 @@
         <circle cx="510" cy="20" r="3" fill="var(--gr)"/><circle cx="510" cy="70" r="3" fill="var(--gr)"/>
       </svg>
 
-      <h1 class="fkl-h1">Curso de Cálculo Manual de<br>Lajes Treliçadas<br><em>Armado &amp; Vigota Protendida</em></h1>
+      <h1 class="fkl-h1">Curso de Cálculo Manual de<br>Lajes Treliçadas em<br><em>Concreto Armado e Vigota Protendida</em></h1>
       <p class="fkl-lead">Um curso <strong>prático e direto ao dimensionamento</strong> — você vai desenvolver os cálculos manualmente, passo a passo, entendendo cada verificação antes de qualquer software.</p>
 
       <div class="fkl-urg">🔥 Condição de lançamento: os <strong>20 primeiros inscritos</strong> garantem <strong>20% de desconto</strong></div>
@@ -203,11 +195,6 @@
 
 </div>
 
-<!-- Botão flutuante WhatsApp -->
-<a class="fkl-float" href="https://chat.whatsapp.com/GW1GQSfRCK477kucKuyo3X" target="_blank" rel="noopener noreferrer" aria-label="Entrar no grupo do WhatsApp" data-track="float-grupo">
-  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-.3-.1-1.2-.4-2.2-1.4-.8-.7-1.4-1.6-1.5-1.9-.2-.3 0-.4.1-.6l.4-.5c.1-.1.2-.3.2-.4.1-.2 0-.3 0-.4-.1-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.1 0 1.3.9 2.5 1.1 2.7.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.5.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.6.2-1.2.2-1.3-.1-.2-.3-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.2 4.9 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4 15.1 3.5 13.6 3.5 12 3.5 7.3 7.3 3.5 12 3.5S20.5 7.3 20.5 12 16.7 20.2 12 20.2z"/></svg>
-</a>
-
 <script>
 (function(){
   "use strict";
@@ -220,21 +207,6 @@
         window.Motion.animate(el, { opacity: [0, 1], y: [24, 0] }, { duration: 0.6, easing: [0.22, 1, 0.36, 1] });
       }, { margin: "-10% 0px -10% 0px" });
     });
-  }
-
-  /* ---------- Botão flutuante: só aparece depois que o usuário passa do hero (evita cobrir o badge de urgência no celular) ---------- */
-  var floatBtn = document.querySelector(".fkl-float");
-  var hero = document.getElementById("fklHero");
-  if (floatBtn && hero) {
-    if (window.IntersectionObserver) {
-      new IntersectionObserver(function(entries){
-        entries.forEach(function(entry){
-          floatBtn.classList.toggle("fkl-show", !entry.isIntersecting);
-        });
-      }, { threshold: 0 }).observe(hero);
-    } else {
-      floatBtn.classList.add("fkl-show");
-    }
   }
 
   /* ---------- GTM: dispara evento direto no dataLayer (funciona mesmo dentro de iframe do construtor de sites) ---------- */
