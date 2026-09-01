@@ -10,11 +10,15 @@ Usar como segunda referência de qualidade-padrão ao lado de `jasminny-tokens.m
 
 Diferente do Jasminny (dourado/luxo/feminino), a identidade Kikuchi é **técnica, séria, escura, com acento terracota** — fala com engenheiro, não com consumidor final. Tom de copy: direto, quantificado (R$, %, anos), sem adjetivo vazio.
 
-**Tipografia confirmada em todos os projetos Kikuchi**: Cormorant Garamond (display/títulos, uppercase + itálico laranja para a palavra de destaque) + Poppins (corpo/UI) — mesma dupla do Jasminny. Já foi testado usar Anton (condensada/poster) nos projetos "Consultoria Estrutural" e "Lançamento Lajes Treliçadas", mas foi revertido para Cormorant Garamond a pedido do cliente, para manter a identidade consistente entre todos os materiais. **Não usar Anton em novos projetos Kikuchi.**
+**⚠️ Tipografia NÃO é uniforme entre os projetos Kikuchi — checar o arquivo antes de reaproveitar padrão:**
+- **Eberick Protendido** e **Lançamento Lajes Treliçadas** (`lancamento-lajes-trelicadas.html`): Cormorant Garamond (display/títulos, uppercase + itálico laranja na palavra de destaque) + Poppins — mesma dupla do Jasminny.
+- **Consultoria Estrutural** (`consultoria-estrutural.html`): Anton (condensada/poster, uppercase, sem itálico — os trechos `<em>` só mudam de cor) + Poppins. Testamos trocar para Cormorant Garamond nesse arquivo também (2026-09), mas o cliente pediu para reverter — **manter Anton nele especificamente**, mesmo que outros materiais do cliente usem Cormorant Garamond.
 
-**Duas variantes de cor em uso** (mesma família tipográfica, acentos diferentes):
+Ao criar um novo material para este cliente, perguntar qual fonte usar em vez de assumir — os dois arquivos atuais já divergem entre si de propósito.
+
+**Duas variantes de cor em uso** (independente da fonte):
 - **Eberick Protendido** (LP de curso, referência original abaixo): terracota mais discreto `--ac:#C85A28`, fundo `--bg:#0a0908`.
-- **Consultoria Estrutural / Lançamento Lajes Treliçadas** (`clientes/fabio-kikuchi/*.html`, prefixos `fk-`/`fkl-`): laranja mais vívido `--ac:#FF5B1F`, fundo `--bg:#050505`. Ao criar um novo material para este cliente, perguntar (ou checar o material mais recente) qual das duas paletas está em uso antes de escolher.
+- **Consultoria Estrutural / Lançamento Lajes Treliçadas** (`clientes/fabio-kikuchi/*.html`, prefixos `fk-`/`fkl-`): laranja mais vívido `--ac:#FF5B1F`, fundo `--bg:#050505`.
 
 ---
 
