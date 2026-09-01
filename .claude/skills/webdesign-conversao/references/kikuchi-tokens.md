@@ -10,6 +10,12 @@ Usar como segunda referência de qualidade-padrão ao lado de `jasminny-tokens.m
 
 Diferente do Jasminny (dourado/luxo/feminino), a identidade Kikuchi é **técnica, séria, escura, com acento terracota** — fala com engenheiro, não com consumidor final. Tom de copy: direto, quantificado (R$, %, anos), sem adjetivo vazio.
 
+**Tipografia confirmada em todos os projetos Kikuchi**: Cormorant Garamond (display/títulos, uppercase + itálico laranja para a palavra de destaque) + Poppins (corpo/UI) — mesma dupla do Jasminny. Já foi testado usar Anton (condensada/poster) nos projetos "Consultoria Estrutural" e "Lançamento Lajes Treliçadas", mas foi revertido para Cormorant Garamond a pedido do cliente, para manter a identidade consistente entre todos os materiais. **Não usar Anton em novos projetos Kikuchi.**
+
+**Duas variantes de cor em uso** (mesma família tipográfica, acentos diferentes):
+- **Eberick Protendido** (LP de curso, referência original abaixo): terracota mais discreto `--ac:#C85A28`, fundo `--bg:#0a0908`.
+- **Consultoria Estrutural / Lançamento Lajes Treliçadas** (`clientes/fabio-kikuchi/*.html`, prefixos `fk-`/`fkl-`): laranja mais vívido `--ac:#FF5B1F`, fundo `--bg:#050505`. Ao criar um novo material para este cliente, perguntar (ou checar o material mais recente) qual das duas paletas está em uso antes de escolher.
+
 ---
 
 ## Tokens de cor via `:root`
