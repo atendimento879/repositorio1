@@ -1919,6 +1919,88 @@ body.vp-tabs-ready .section.vp-tab-visible:last-child{margin-bottom:34px}
 #s-protensao .fios-table th:nth-child(6){white-space:nowrap;}
 </style>
 
+<style id="rwd-final-fix">
+/* Correção final de responsividade — bloco colocado por último no cascade de
+   propósito, para vencer com segurança as ~17 gerações de ajustes anteriores
+   do cabeçalho (.v38-top), que nunca chegaram a funcionar corretamente em
+   telas estreitas (badge "TUDO OK" sobrepondo o subtítulo). Em vez de mais
+   uma camada de patch pontual, redefine o layout do cabeçalho inteiro como
+   um flex-wrap simples e previsível. A altura real do cabeçalho passa a ser
+   lida em tempo de execução (ver script antes de </body>) e escrita em
+   --v35TopH, a mesma variável que todo o resto do arquivo já usa para
+   reservar o espaço do cabeçalho fixo — então nenhuma outra regra precisa
+   ser tocada. */
+.fios-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+@media (max-width:760px){
+  .fios-table-scroll{position:relative;}
+  .fios-table-scroll::after{
+    content:'';
+    position:absolute; top:0; right:0; bottom:0; width:22px;
+    background:linear-gradient(to right, transparent, rgba(255,255,255,.96));
+    pointer-events:none;
+  }
+}
+@media (max-width:900px){
+  .v38-top{
+    position:fixed!important;
+    height:auto!important;
+    min-height:0!important;
+    display:flex!important;
+    flex-wrap:wrap!important;
+    align-items:center!important;
+    gap:6px 10px!important;
+    padding:10px 12px!important;
+  }
+  .v38-identity{
+    order:1!important;
+    flex:1 1 auto!important;
+    min-width:0!important;
+    width:auto!important;
+    max-width:none!important;
+  }
+  .v38-titleline{padding-right:0!important;display:block!important;}
+  .v38-titleline>div{min-width:0!important;}
+  .v38-titleline h1{font-size:15px!important;line-height:1.25!important;white-space:normal!important;overflow-wrap:anywhere!important;}
+  .v38-titleline p{font-size:9.5px!important;line-height:1.3!important;white-space:normal!important;margin:3px 0 0!important;overflow-wrap:anywhere!important;}
+  #v38Pending{
+    order:2!important;
+    position:static!important;
+    inset:auto!important;
+    top:auto!important;right:auto!important;left:auto!important;
+    margin:0!important;
+    flex:0 0 auto!important;
+    font-size:10px!important;
+    padding:5px 9px!important;
+    white-space:nowrap!important;
+  }
+  .v60-header-side{
+    order:3!important;
+    position:static!important;
+    inset:auto!important;
+    top:auto!important;right:auto!important;left:auto!important;
+    width:auto!important;
+    min-width:0!important;
+    flex:0 0 auto!important;
+    padding:0!important;
+  }
+  .v38-top .v60-header-side .v38-logo{position:static!important;width:auto!important;padding:0!important;}
+  .v38-top .v60-header-side .v38-logo img{position:static!important;width:84px!important;max-width:84px!important;height:auto!important;}
+  .v38-toolbar{
+    order:4!important;
+    flex:1 1 100%!important;
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:1fr 1fr 1fr!important;
+    gap:6px!important;
+  }
+}
+@media (max-width:420px){
+  .v38-toolbar{grid-template-columns:1fr 1fr!important;}
+  .v38-toolbar .saveas{display:none!important;}
+  .v38-titleline h1{font-size:13.5px!important;}
+}
+</style>
+
 </head>
 <body>
 <header class="v38-top" aria-label="Barra principal">
@@ -2189,10 +2271,12 @@ body.vp-tabs-ready .section.vp-tab-visible:last-child{margin-bottom:34px}
       <p class="section-desc">Fios de pré-tração (retos). Posição x (largura) e y (altura) medidas a partir do centro da base da vigota.</p>
       <div class="card">
         <h3>Fios de protensão</h3>
+        <div class="fios-table-scroll">
         <table class="fios-table" id="fios-tabela">
           <thead><tr><th>Fio</th><th>Bitola / produto</th><th>Área <span class="unit">(mm²)</span></th><th>fptk <span class="unit">(MPa)</span></th><th>P<sub>i,lim</sub> <span class="unit">(kN)</span></th><th>P<sub>i,adot</sub> <span class="unit">(kN)</span></th><th>x <span class="unit">(cm)</span></th><th>y <span class="unit">(cm)</span></th><th></th></tr></thead>
           <tbody id="fios-body"></tbody>
         </table>
+        </div>
         <button id="add-fio" style="margin-top:8px;">+ Adicionar fio</button>
         <div class="note" id="fios-categoria-note">P<sub>i,lim</sub> = A<sub>p</sub>·0,77·f<sub>ptk</sub> é o valor calculado pelo critério adotado no programa. O dimensionamento usa P<sub>i,adot</sub>, informado para cada fio, e verifica se ele não supera P<sub>i,lim</sub>.</div>
         <div id="out-protensao-resumo" style="margin-top:12px;"></div>
@@ -4599,6 +4683,22 @@ recalcAll();
   document.addEventListener('keydown',e=>{
     if(e.key==='Escape'&&pop)closePop();
   });
+})();
+</script>
+
+<script>
+(function(){
+  // Mantém --v35TopH (usada em todo o arquivo para reservar o espaço do
+  // cabeçalho fixo) sincronizada com a altura real de .v38-top, que agora
+  // varia conforme a largura da tela e o quanto o texto quebra linha.
+  var header = document.querySelector('.v38-top');
+  if(!header) return;
+  var root = document.documentElement;
+  function sync(){ root.style.setProperty('--v35TopH', header.offsetHeight + 'px'); }
+  if(window.ResizeObserver){ new ResizeObserver(sync).observe(header); }
+  else { window.addEventListener('resize', sync); }
+  window.addEventListener('load', sync);
+  sync();
 })();
 </script>
 
